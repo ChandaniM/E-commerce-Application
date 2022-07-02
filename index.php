@@ -45,7 +45,7 @@
                                                     <div class="card-body">
                 										<p class="card-text">&#8377;'.$row["Pro_cost"].'</p>
                                                         <div class=""> 
-                                                          <a href="./wishlist.php?id='.$row["Pro_id"].'" class="btn btn-primary ">Add To Wishlist</a> 
+                                                          <a href="./index.php?id='.$row["Pro_id"].'" class="btn btn-primary ">Add To Wishlist</a> 
                                                          </div>
 
                                                     </div>
@@ -66,7 +66,7 @@
                     if(!isset($_SESSION['userid']) && !$_SESSION['loggedin']==true){
                         echo "<script> location.href='./login.php'; </script>";
                     }else{
-                        $SQL = "INSERT INTO Cart (user_id,product_id,quantity) VALUES ('". $_SESSION['userid'] ."','". $_GET['id'] ."','". 1 ."')";  
+                        $SQL = "INSERT INTO wishlist (user_id,product_id,quantity) VALUES ('". $_SESSION['userid'] ."','". $_GET['id'] ."','". 1 ."')";  
                         $result = mysqli_query($connection,$SQL) or die('Invalid query:'.mysqli_error($connection));
                     }
                 }

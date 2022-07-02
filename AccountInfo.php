@@ -4,14 +4,8 @@
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	
-    <link rel="stylesheet" href="./CSS/footer.css">
-    <link href="./CSS/account.css" rel="stylesheet" type="text/css">    
-    
-    
+<head>   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/header.css">
 </head>
 <body>
     <!-- <header> -->
@@ -31,7 +25,7 @@
                 if(!isset($_SESSION['userid']) && !$_SESSION['loggedin']==true){
                     header('Location:./loginform.php');
                 }
-                    $sql = "SELECT * FROM customer WHERE customer_id= ".$_SESSION['userid']."";
+                    $sql = "SELECT * FROM customer WHERE userid= '".$_SESSION['userid']."'";
                             if($result = mysqli_query($connection, $sql)){
                                 //$row = mysqli_fetch_all($result, MYSQLI_NUM);
                                 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -41,7 +35,7 @@
                                                 <label for="fname">First Name:</label>
                                             </div>
                                             <div class="col-75">
-                                                <input type="text" class="text-input" id="fname" name="firstname" value="'.$row["First_Name"].'">
+                                                <input type="text" class="text-input" id="fname" name="name" value="'.$row["Firstname"].'">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -49,7 +43,7 @@
                                                 <label for="lname">Last Name:</label>
                                             </div>
                                             <div class="col-75">
-                                                <input type="text" class="text-input" id="lname" name="lastname" value="'.$row["Last_Name"].'">
+                                                <input type="text" class="text-input" id="lname" name="lastname" value="'.$row["Lastname"].'">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -57,7 +51,7 @@
                                                 <label for="email">E-mail Address:</label>
                                             </div>
                                             <div class="col-75">
-                                                <input type="text" class="text-input" name="email" id="email" value="'.$row["Email_Id"].'">
+                                                <input type="text" class="text-input" name="email" id="email" value="'.$row["Email"].'">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -65,7 +59,7 @@
                                                 <label for="phone">PHONE:</label>
                                             </div>
                                             <div class="col-75">
-                                                <input type="tel" class="text-input" name="phone" id="phone" value="'.$row["Phone_Num"].'">
+                                                <input type="tel" class="text-input" name="tel_num" id="phone" value="'.$row["phone"].'">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -73,9 +67,25 @@
                                                 <label for="address">Address:</label>
                                             </div>
                                             <div class="col-75">
-                                                <input type="text"  class="text-input" id="address" name="address"  
-                                                value="'. $row["Address"] .'">
+                                                <input type="text"  class="text-input" id="address" name="Address"  
+                                                value="'. $row["address"] .'">
                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-25">
+                                                <label for="password">Password:</label>
+                                            </div>
+                                            <div class="col-75 input-group">
+                                                <input type="password" class="form-control" id="password" name="password"
+                                                    value="'.$row["password"]
+                                                    .'"
+                                                >
+                                                <div class="px-2 py-2 mx-1" id="password-eye">
+                                                    <span class="fas fa-eye-slash d-none" id="hide-pass"></span>
+                                                    <span class="fas fa-eye" id="display-pass"></span>
+                                                </div>
+                                                    
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <form mehod="post">
@@ -96,33 +106,38 @@
         <div class="container-box">
             <!-- Order DB -->
             <h2>Order Details</h2>
-            <div class="middle-page">
-        <div class="cart-page">
-            <!-- part 1 -->
+            <div class="products">
+                
+                <div class="container">            <!-- part 1 -->
             <?php 
                 if(!isset($_SESSION['userid']) && !$_SESSION['loggedin']==true){
-                    echo "<script> location.href='./loginform.php'; </script>";
+                    echo "<script> location.href='./login.php'; </script>";
                     exit;
                 }
-                $sql = "SELECT * FROM `Order` WHERE customer_id = ".$_SESSION['userid']."";
+                $sql = "SELECT * FROM `order` WHERE User_ID = ".$_SESSION['userid']."";
                 $result=mysqli_query($connection,$sql) or die('Invalid query:');
                 while($row = mysqli_fetch_assoc($result)){
                     //echo $row['product_id'];
-                    $sql2="SELECT * FROM dishes WHERE dish_id=".$row['dish_id'];
+                    $sql2="SELECT * FROM product WHERE Pro_id=".$row['Product_ID'];
                     $result2=mysqli_query($connection,$sql2) or die('Invalid query:');
                     // while($row2 = mysqli_fetch_assoc($result2)){
                     $row2 = mysqli_fetch_assoc($result2);
                         echo'
-                            <div class="cart--1 flex-space">
-                                <div class="img-container">
-                                    <img src="'.$row2["image"].'" class="Images--dish" alt="">
-                                </div>
-                                <div class="cart--detail flex-space">
-                                    <span class="dish--name dish--items">'.$row2["dish_name"].'</span>
-                                    <span class="dish--quanity dish--items">x'.$row["quantity"].'</span>
-                                    <span class="dish--price dish--items">&#8377;'.$row["quantity"]*$row2["cost"].'</span>
-                                </div>
-                            </div>
+                            <div class="row shadow my-2">
+                               <div class="col-md-2 col-4 d-flex align-items-center justify-content-end">
+                                   <img src="'.$row2["Pro_image"].'" alt="Image" style=" max-height:6.2em;">
+                               </div>
+                               <div class="col-md-8 col-6">
+                                   <div class="card border-0">
+                                     <!-- <h5 class="card-header">User Name</h5> <--></-->
+                                     <div class="card-body">
+                                       <span class="card-title">'.$row2["Pro_name"].'</span>
+                                       <p class="">x'.$row["Quantity"].'</p>
+                                       <p>&#8377;'.$row["Quantity"]*$row2["Pro_cost"].'</p>
+                                     </div>
+                                   </div>
+                               </div>
+                           </div>
                         ';  
                     // }
                 }
@@ -134,12 +149,13 @@
     </div>
     <?php
         if(isset($_POST['edit'])){
-            $FirstName=$_POST["firstname"];
+            $FirstName=$_POST["name"];
             $LastName=$_POST["lastname"];
             $email=$_POST["email"];
-            $phone=$_POST["phone"];
-            $Address=$_POST["address"];
-            $sql="UPDATE customer SET First_Name='$FirstName',Last_Name='$LastName',Email_Id='$email',Phone_Num='$phone',Address='$Address' WHERE customer_id = ".$_SESSION['userid']."";
+           $phone=$_POST["tel_num"];
+            $Address=$_POST["Address"];
+            $password=$_POST["password"];
+            $sql="UPDATE customer SET Firstname='$FirstName',Lastname='$LastName',Email='$email',password='$password',phone='$phone',address='$Address' WHERE userid = ".$_SESSION['userid']."";
             $result = mysqli_query($connection,$sql) or die('Invalid query:'.mysqli_error($connection));
         }
         if(isset($_POST['logout'])){
@@ -155,6 +171,20 @@
             include './PHP/footer.php';
         ?>
     <!-- </footer> -->
-    <script src="./headerLogic.js"></script>
+    <script>
+        document.getElementById('password-eye').addEventListener('click',()=>{
+            let display_pass=document.getElementById('display-pass');
+            if(!display_pass.classList.contains('d-none')){
+                document.getElementById('hide-pass').classList.remove('d-none');
+                document.getElementById('password').type="text";
+                display_pass.classList.add('d-none')
+            }else{
+                document.getElementById('hide-pass').classList.add('d-none');
+                document.getElementById('password').type="password";
+                display_pass.classList.remove('d-none')
+            }
+            
+        });
+    </script>
 </body>
 </html>

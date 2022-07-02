@@ -1,4 +1,4 @@
-<?php
+    <?php
     session_start();
     include './PHP/connection.php';
     include './PHP/common_files.php'
@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-		  <div class="container">
+	<div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <div class="login-form mt-4 p-4 shadow ">
@@ -24,12 +24,6 @@
                             <label>Password</label>
                             <input type="password" name="password" class="form-control" placeholder="Password">
                         </div>
- <!--                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="rememberMe">
-                                <label class="form-check-label" for="rememberMe"> Remember me</label>
-                            </div>
-                        </div> -->
                         <div class="col-12">
                             <button type="submit" name="login-submit" class="btn btn-primary">Login</button>
                         </div>
@@ -42,5 +36,28 @@
             </div>
         </div>
     </div>
+    <?php
+    		if (isset($_POST['login-submit'])){
+    			
+    				$email = $_POST['email'];
+    				//echo $email;
+    				$password = $_POST['password'];
+    				
+    				$sql= "SELECT * FROM Customer WHERE Email = '$email' AND password = 
+    				'$password'";
+    				$result = mysqli_query($connection,$sql);
+    				if(isset($result)){
+                        $check = mysqli_fetch_assoc($result);
+    					$_SESSION['loggedin']=true;
+    					$_SESSION['userid']=$check['userid'];
+    					echo "<script> location.href='./index.php'; </script>";
+    	    			exit;
+    				}
+
+    				else{
+    					echo 'failure';
+    				}
+    			}
+    ?>
 </body>
 </html>

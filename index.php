@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require './PHP/connection.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,6 @@
 		<header>
 		  <?php
 		    include'./PHP/header.php';
-		    require './PHP/connection.php';
 		    require './PHP/common_files.php';
 		    //Connect mtlb tera connection ka fi
 		  ?>
@@ -44,7 +44,10 @@
                                                     </div>
                                                     <div class="card-body">
                 										<p class="card-text">&#8377;'.$row["Pro_cost"].'</p>
-                                                      <a href="./index.php?id='.$row["Pro_id"].'" class="btn btn-primary d-block">Add To Cart</a> 
+                                                        <div class=""> 
+                                                          <a href="./wishlist.php?id='.$row["Pro_id"].'" class="btn btn-primary ">Add To Wishlist</a> 
+                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </a>    
@@ -58,5 +61,15 @@
 		 <?php
 		    include'./PHP/footer.php';
 		  ?>
+           <?php
+                if(isset($_GET['id'])){
+                    if(!isset($_SESSION['userid']) && !$_SESSION['loggedin']==true){
+                        echo "<script> location.href='./login.php'; </script>";
+                    }else{
+                        $SQL = "INSERT INTO Cart (user_id,product_id,quantity) VALUES ('". $_SESSION['userid'] ."','". $_GET['id'] ."','". 1 ."')";  
+                        $result = mysqli_query($connection,$SQL) or die('Invalid query:'.mysqli_error($connection));
+                    }
+                }
+            ?>
 </body>
 </html>

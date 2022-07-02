@@ -17,6 +17,9 @@
         	width:40%;
         	border: 1px solid darkgrey;
         }
+        .hide{
+            display: none;
+        }
     </style>
 
 </head>
@@ -25,50 +28,47 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="signup-form shadow">
-                <form class="mt-5 border p-4 " method="POST">
+                <form class="mt-5 border p-4 " method="POST" autocomplete="off">
                     <h4 class="mb-5 text-secondary">Create Your Account</h4>
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label>First Name<span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter First Name">
+                            <input type="text" name="name" class="form-control" placeholder="Enter First Name" required='true'>
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label>Last Name<span class="text-danger">*</span></label>
-                            <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name">
+                            <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name" required='true'>
                         </div>
                          <div class="mb-3 col-md-12">
                             <label>Email<span class="text-danger">*</span></label>
-                            <input type="email" name="email" class="form-control" placeholder="Enter Email">
+                            <input type="email" name="email" class="form-control" placeholder="Enter Email" required='true'>
                         </div>
                         <div class="mb-3 col-md-12">
                             <label>Address<span class="text-danger">*</span></label>
-                            <input type="text" name="Address" class="form-control" placeholder="Enter Email">
+                            <input type="text" name="Address" class="form-control" placeholder="Enter Address" required='true'>
                         </div>
-                          <div class="radio-input d-flex">
-	                        <div class="form-check">
-	                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-	                          <label class="form-check-label" for="flexRadioDefault1">
-	                            Customer
-	                          </label>
-	                        </div>
-	                        <div class="form-check pl-3">
-	                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-	                          <label class="form-check-label" for="flexRadioDefault2">
-	                            Seller
-	                          </label>
-	                        </div>
+                         <div class="mb-3 col-md-12">
+	                       	<select name="option">
+	                       	   <option value="Customer">Customer</option>
+	                       	   <option value="Seller">Seller</option>
+	                       	 </select>                    
 	                    </div>
                         <div class="mb-3 col-md-12">
+                            <label>Phone<span class="text-danger">*</span></label>
+                            <input type="text"  class="form-control" name="tel_num" placeholder="Enter Phone" required='true'>
+                        </div>
+                        <div class="mb-3 col-md-12">
                             <label>Password<span class="text-danger">*</span></label>
-                            <input type="password"  class="form-control" name="pass" placeholder="Enter Password">
+                            <input type="password"  class="form-control password" name="pass" placeholder="Enter Password">
                         </div>
                         <div class="mb-3 col-md-12">
                             <label>Confirm Password<span class="text-danger">*</span></label>
-                            <input type="password" name="pass" class="form-control"  placeholder="Confirm Password">
+                            <input type="password" name="pass" class="form-control repassword"  placeholder="Confirm Password">
+                            <span class="hide" id="hide">your password is not same</span>
                         </div>
                         <div class="col-md-12">
-                           <button class="btn btn-primary" name="signup-submit" class="signup-submit-button">Signup</button>
+                           <button class="btn btn-primary" name="signup-submit" class="signup-submit-button ">Signup</button>
                                
                         </div>
                     </div>
@@ -80,18 +80,18 @@
 </div>
 
 <?php
-	 if(isset($_POST['submit'])){
+	 if(isset($_POST['signup-submit'])){
 			$FirstName=$_POST["name"];
 			$LastName=$_POST["lastname"];
 			$email=$_POST["email"];
 			$phone=$_POST["tel_num"];
 			$Address=$_POST["Address"];
 			$pas=$_POST["pass"];
-			$category=$_POST["flexRadioDefault"].value;
+			$category=$_POST["option"];
 			$SQL = "INSERT INTO Customer (Firstname,Lastname,Email,phone,address,password,category) VALUES ('". $FirstName ."','". $LastName ."','". $email ."',". $phone .",'". $Address ."','". $pas ."','". $category ."')";
 			$result = mysqli_query($connection,$SQL);
 		}
 ?>
-
+<script type="text/javascript" src="./JS/loginscript.js"></script>
 </body>
 </html>

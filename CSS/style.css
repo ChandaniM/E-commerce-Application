@@ -10,9 +10,6 @@
 .sub_div,.label-input{
 	display: block;
 }
-.signup-title{
-	color: #868686;
-}
 .input-box {
 	margin: 0 auto;
 	display:flex;
@@ -20,7 +17,4 @@
 	flex-direction: column;
 	padding: 1em;
 	 box-shadow: 3px 5px 10px 0 gray;
-}
-.radio-input{
-	width:40%;
 }

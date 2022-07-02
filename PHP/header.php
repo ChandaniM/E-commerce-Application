@@ -7,19 +7,13 @@
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="./index.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#">About US</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#">shop</a>
-                    </li>
                   </ul>
                   <form class="d-flex mx-4">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
                     <button class="btn btn-primary">
-                          <a href="./login.php" class="" style="color:#fff; text-decoration: none;">Signup/Login</a>
+                          <a href="./login.php" class="" style="color:#fff; text-decoration: none;">Login</a>
                       </button>
                 </div>
               </div>

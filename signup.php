@@ -88,9 +88,33 @@
 			$Address=$_POST["Address"];
 			$pas=$_POST["pass"];
 			$category=$_POST["option"];
-			$SQL = "INSERT INTO Customer (Firstname,Lastname,Email,phone,address,password,category) VALUES ('". $FirstName ."','". $LastName ."','". $email ."',". $phone .",'". $Address ."','". $pas ."','". $category ."')";
-			$result = mysqli_query($connection,$SQL);
-		}
+            // $query = "SELECT 1 FROM customer WHERE Email = '$email'";
+            // $selectresult = mysqli_query($connection, "SELECT 1 FROM customer WHERE Email = '$email'");
+            // if(mysqli_num_rows($selectresult)>0){
+            //     $msg = 'email already exists';
+            // }
+            // else{
+                $SQL = "INSERT INTO Customer (Firstname,Lastname,Email,phone,address,password,category) VALUES ('". $FirstName ."','". $LastName ."','". $email ."',". $phone .",'". $Address ."','". $pas ."','". $category ."')";
+                $result = mysqli_query($connection,$SQL);
+                // if($result){
+                //         $newuserid=mysqli_insert_id($connection);
+                //         $_SESSION['userid']=$newuserid;
+                //         //Create folder for user
+                //         $usercategory=mysqli_fetch_assoc($category);
+                //             if($usercategory['category']=="Seller"){
+                //                 mkdir('./Uploads/'.$newuserid,0777,true);
+                //             }
+                //             echo'
+                //             <script>
+                //               location.href="./index.php";
+                //             </script>';   
+                // }
+                // else{
+                    echo(mysqli_error($connection));
+                // }
+            // }
+			
+	}
 ?>
 <script type="text/javascript" src="./JS/loginscript.js"></script>
 </body>

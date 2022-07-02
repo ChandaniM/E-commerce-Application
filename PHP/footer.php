@@ -6,43 +6,17 @@
        <!-- Grid container -->
        <div class="container">
          <!-- Section: Links -->
-         <section class="mt-5">
+         <section class="mt-3">
            <!-- Grid row-->
            <div class="row text-center d-flex justify-content-center pt-5">
              <!-- Grid column -->
              <div class="col-md-2">
                <h6 class="text-uppercase font-weight-bold">
-                 <a href="./index.php" class="text-white text-decoration-none">Home</a>
+                 <a href="./index.php" class="text-white text-decoration-none blockquote">Home</a>
                </h6>
              </div>
              <!-- Grid column -->
-
-             <!-- Grid column -->
-             <div class="col-md-2">
-               <h6 class="text-uppercase font-weight-bold">
-                 <a href="./aboutus.php" class="text-white text-decoration-none">About us</a>
-               </h6>
-             </div>
-             <!-- Grid column -->
-
-             <!-- Grid column -->
-             <div class="col-md-2">
-               <h6 class="text-uppercase font-weight-bold">
-                 <a href="./categories.php" class="text-white text-decoration-none">Categories</a>
-               </h6>
-             </div>
-             <!-- Grid column -->
-
-             <!-- Grid column -->
-             <div class="col-md-2">
-               <h6 class="text-uppercase font-weight-bold">
-                 <a href="./rent-books.php" class="text-white text-decoration-none">Rentals</a>
-               </h6>
-             </div>
-
-             <!-- Grid column -->
-
-             <!-- Grid column -->
+              <!-- Grid column -->
              <!--<div class="col-md-2">
                <h6 class="text-uppercase font-weight-bold">
                  <a href="#!" class="text-white">Contact</a>
@@ -54,7 +28,7 @@
          </section>
          <!-- Section: Links -->
 
-         <hr class="my-5" />
+         <hr class="my-4" />
 
          <!-- Section: Social -->
          <section class="text-center mb-5">

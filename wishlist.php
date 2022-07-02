@@ -65,7 +65,7 @@
 						 	echo'
 						 			<!-- ORDER -->
 									<form method="post">
-										<button class="order-button" name="order">CONFIRM ORDER</button>
+										<button class="btn btn-primary" name="order">CONFIRM ORDER</button>
 									</form>
 						 	';
 						}else{
@@ -108,7 +108,7 @@
 						$sql3='INSERT INTO `Order` (User_ID, Product_ID, Quantity, Total_Amount, Order_Date,Status) VALUES ('.$_SESSION["userid"].', '.$row["product_id"].', '.$row["quantity"].', '.$cost.', '.$date.',"In Progress")';
 						$result3=mysqli_query($connection,$sql3) or die('Invalid query:'.mysqli_error($connection));
 						//echo "<script>location";
-						
+
 					// }
 				}
 				echo "<script> location.href='./AccountInfo.php'; </script>";

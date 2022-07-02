@@ -6,6 +6,28 @@
 <html>
 <head>   
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        .top{
+            margin:20px;
+        }
+        .container-box {
+          border-radius: 5px;
+          padding: 20px;
+        }
+        .col-25 {
+          float: left;
+          width: 25%;
+          margin-top: 6px;
+        }
+
+        .col-75 {
+          float: left;
+          width: 75%;
+          margin-top: 6px;
+        }
+
+
+    </style>
 </head>
 <body>
     <!-- <header> -->
@@ -16,6 +38,7 @@
 
 
         ?>
+
     <!-- </header> -->
     <div class="top">
         <div class="container-box">
@@ -30,69 +53,68 @@
                                 //$row = mysqli_fetch_all($result, MYSQLI_NUM);
                                 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                                     echo'
+
                                         <div class="row">
-                                            <div class="col-25">
-                                                <label for="fname">First Name:</label>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="text" class="text-input" id="fname" name="name" value="'.$row["Firstname"].'">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-25">
-                                                <label for="lname">Last Name:</label>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="text" class="text-input" id="lname" name="lastname" value="'.$row["Lastname"].'">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                             <div class="col-25">
-                                                <label for="email">E-mail Address:</label>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="text" class="text-input" name="email" id="email" value="'.$row["Email"].'">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                             <div class="col-25">
-                                                <label for="phone">PHONE:</label>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="tel" class="text-input" name="tel_num" id="phone" value="'.$row["phone"].'">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-25">
-                                                <label for="address">Address:</label>
-                                            </div>
-                                            <div class="col-75">
-                                                <input type="text"  class="text-input" id="address" name="Address"  
-                                                value="'. $row["address"] .'">
+                                               <div class="col-25 ">
+                                                   <label for="uname">First Name:</label>
+                                               </div>
+                                               <div class="col-75">
+                                                   <input type="text" class="form-control" id="uname" name="name" value="'.$row["Firstname"].'">
+                                               </div>
                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-25">
-                                                <label for="password">Password:</label>
-                                            </div>
-                                            <div class="col-75 input-group">
-                                                <input type="password" class="form-control" id="password" name="password"
-                                                    value="'.$row["password"]
-                                                    .'"
-                                                >
-                                                <div class="px-2 py-2 mx-1" id="password-eye">
-                                                    <span class="fas fa-eye-slash d-none" id="hide-pass"></span>
-                                                    <span class="fas fa-eye" id="display-pass"></span>
-                                                </div>
-                                                    
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <form mehod="post">
-                                                <button name="edit" class="edit-button button">Edit</button>
-                                                </form>
-                                                <button class="logout button" name="logout">LOGOUT</button>
-                                        </div>
+                                           <div class="row">
+                                               <div class="col-25 ">
+                                                   <label for="uname">Last Name:</label>
+                                               </div>
+                                               <div class="col-75">
+                                                   <input type="text" class="form-control" id="uname" name="lastname"  value="'.$row["Lastname"].'">
+                                               </div>
+                                           </div>
+                                           <div class="row">
+                                                <div class="col-25 ">
+                                                   <label for="email">E-mail Address:</label>
+                                               </div>
+                                               <div class="col-75">
+                                                   <input type="text" class="form-control" name="email" id="email" value="'.$row["Email"].'">
+                                               </div>
+                                           </div>
+                                           <div class="row">
+                                                <div class="col-25">
+                                                   <label for="phone">Phone:</label>
+                                               </div>
+                                               <div class="col-75">
+                                                   <input type="tel" class="form-control" name="tel_num" id="phone" value="'.$row["phone"].'">
+                                               </div>
+                                           </div>
+                                           <div class="row">
+                                               <div class="col-25">
+                                                   <label for="address">Address:</label>
+                                               </div>
+                                               <div class="col-75">
+                                                   <input type="text" class="form-control" id="address" name="Address"
+                                                       value="'.$row["address"].'">
+                                               </div>
+                                           </div>
+                                           <div class="row">
+                                               <div class="col-25">
+                                                   <label for="password">Password:</label>
+                                               </div>
+                                               <div class="col-75 input-group">
+                                                   <input type="password" class="form-control" id="password" name="password"
+                                                       value="'.$row["password"].'">
+                                                   <div class="px-2 py-2 mx-1" id="password-eye">
+                                                       <span class="fas fa-eye-slash d-none" id="hide-pass"></span>
+                                                       <span class="fas fa-eye" id="display-pass"></span>
+                                                   </div>
+                                                       
+                                               </div>
+                                           </div>
+                                           <div class="Row my-4">
+                                               <form mehod="post">
+                                                   <button name="edit" class="btn btn-outline-success">EDIT</button>
+                                                   </form>
+                                                   <button name="logout" class="btn btn-outline-danger">LOGOUT</button>
+                                           </div>
                                     ';
                                 }
                             }
@@ -157,6 +179,7 @@
             $password=$_POST["password"];
             $sql="UPDATE customer SET Firstname='$FirstName',Lastname='$LastName',Email='$email',password='$password',phone='$phone',address='$Address' WHERE userid = ".$_SESSION['userid']."";
             $result = mysqli_query($connection,$sql) or die('Invalid query:'.mysqli_error($connection));
+
         }
         if(isset($_POST['logout'])){
             unset($_SESSION['userid']);

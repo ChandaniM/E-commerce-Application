@@ -35,23 +35,26 @@
                                     //     $sale.='';
                                     // }
                                     echo '
-                            			<div class=" p-3 d-inline-block">
-                            			   <a href="ProductDes.php?id='.$row["Pro_id"].'" class="text-decoration-none link-dark">
-                                                <div class="card " style="width: 18rem;">
-                                                    <div class="ratio ratio-4x3" style="object-fit: cover;">
-                                                    	'.$sale.'
-                                                        <img src="'.$row["Pro_image"].'" alt="'.$row["Pro_name"].'" class="card-img-top py-2" style="object-fit: contain;"  alt="image" loading="lazy">
-                                                    </div>
-                                                    <div class="card-body">
-                										<p class="card-text">&#8377;'.$row["Pro_cost"].'</p>
-                                                        <div class=""> 
-                                                          <a href="./index.php?id='.$row["Pro_id"].'" class="btn btn-primary ">Add To Wishlist</a> 
-                                                         </div>
+                                        <a href="ProductDes.php?id='.$row["Pro_id"].'" class="text-decoration-none link-dark">
+                                			<div class=" p-3 d-inline-block">
+                                			   <a href="ProductDes.php?id='.$row["Pro_id"].'" class="text-decoration-none link-dark">
+                                                    <div class="card " style="width: 18rem;">
+                                                        <div class="ratio ratio-4x3" style="object-fit: cover;">
+                                                        	'.$sale.'
+                                                            <img src="'.$row["Pro_image"].'" alt="'.$row["Pro_name"].'" class="card-img-top py-2" style="object-fit: contain;"  alt="image" loading="lazy">
+                                                        </div>
+                                                        <div class="card-body">
+                    										<p class="card-text">&#8377;'.$row["Pro_cost"].'</p>
+                                                            <div class=""> 
+                                                              <a href="./index.php?id='.$row["Pro_id"].'" class="btn btn-primary ">Add To Wishlist</a> 
+                                                             </div>
 
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </a>    
-                                         </div>
+                                                </a>    
+                                             </div>
+                                        </a>
+                                  <!--  <div>-->
                                     ';
                                 }
         

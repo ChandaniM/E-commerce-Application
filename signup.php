@@ -20,6 +20,15 @@
         .hide{
             display: none;
         }
+        .des-password{
+            outline: none;
+            border: none;
+            width:80%;
+            margin-left:0.3em;
+        }
+        .form-input-password{
+             border-radius: 0.2em;
+        }
     </style>
 
 </head>
@@ -28,45 +37,66 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="signup-form shadow">
-                <form class="mt-5 border p-4 " method="POST" autocomplete="off">
+                <form class="mt-5 border p-4 " method="POST" autocomplete="off" onsubmit="return vaildation()">
                     <h4 class="mb-5 text-secondary">Create Your Account</h4>
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label>First Name<span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter First Name" required='true'>
+                            <input type="text" name="name" class="form-control" placeholder="Enter First Name" id="firstName">
+                            <span id="firsterror" class="text-danger fw-bold"></span>
                         </div>
 
                         <div class="mb-3 col-md-6">
                             <label>Last Name<span class="text-danger">*</span></label>
-                            <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name" required='true'>
+                            <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name" id="lastName" >
+                             <span id="lasterror" class="text-danger fw-bold"></span>
                         </div>
                          <div class="mb-3 col-md-12">
                             <label>Email<span class="text-danger">*</span></label>
-                            <input type="email" name="email" class="form-control" placeholder="Enter Email" required='true'>
+                            <input type="email" name="email" class="form-control" placeholder="Enter Email" id="email" >
+                             <span id="emailerror" class="text-danger fw-bold"></span>
                         </div>
                         <div class="mb-3 col-md-12">
                             <label>Address<span class="text-danger">*</span></label>
-                            <input type="text" name="Address" class="form-control" placeholder="Enter Address" required='true'>
+                            <input type="text" name="Address" class="form-control" placeholder="Enter Address" id="address">
+                            <span id="addresserror" class="text-danger fw-bold"></span>
                         </div>
                          <div class="mb-3 col-md-12">
-	                       	<select name="option">
+	                       	<select name="option" style="width:8em;">
 	                       	   <option value="Customer">Customer</option>
 	                       	   <option value="Seller">Seller</option>
 	                       	 </select>                    
 	                    </div>
                         <div class="mb-3 col-md-12">
                             <label>Phone<span class="text-danger">*</span></label>
-                            <input type="text"  class="form-control" name="tel_num" placeholder="Enter Phone" required='true'>
+                            <input type="text"  class="form-control" name="tel_num" placeholder="Enter Phone" id="phone">
+                            <span id="phoneerror" class="text-danger fw-bold"></span>
                         </div>
-                        <div class="mb-3 col-md-12">
+                        <!-- password  -->
+                        <div class="col-md-12 mb-2">
                             <label>Password<span class="text-danger">*</span></label>
-                            <input type="password"  class="form-control password" name="pass" placeholder="Enter Password">
+                            <div class="border d-flex justify-content-between align-items-center form-input-password">
+                                <input type="password"  class="des-password w-80" name="pass" placeholder="Enter Password"  id="password" oninput="strengthChecker()">
+                               <div class="px-2 py-2 mx-1" id="password-eye">
+                                   <span class="fas fa-eye-slash d-none" id="hide-pass"></span>
+                                   <span class="fas fa-eye" id="display-pass"></span>
+                               </div>
+                            </div>
+                             <span id="passerror" class="text-danger fw-bold"></span>
                         </div>
+                        <!-- Conform password -->
                         <div class="mb-3 col-md-12">
-                            <label>Confirm Password<span class="text-danger">*</span></label>
-                            <input type="password" name="pass" class="form-control repassword"  placeholder="Confirm Password">
-                            <span class="hide" id="hide">your password is not same</span>
+                           <label>Confirm Password<span class="text-danger">*</span></label>
+                           <div class="border d-flex justify-content-between align-items-center form-input-password">
+                               <input type="password" name="pass" id="conpass"  placeholder="Confirm Password" class="des-password">
+                               <div class="px-2 py-2 mx-1" id="password-eye-confrom">
+                                   <span class="fas fa-eye-slash d-none" id="hide-pass-confrom"></span>
+                                   <span class="fas fa-eye" id="display-pass-confrom"></span>
+                               </div>
+                           </div>
+                           <span id="confromerror" class="text-danger fw-bold"></span>
                         </div>
+
                         <div class="col-md-12">
                            <button class="btn btn-primary" name="signup-submit" class="signup-submit-button ">Signup</button>
                                

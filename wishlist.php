@@ -30,7 +30,7 @@
 					MY WISHLIST
 				</h2>
 				<?php
-					if(!isset($_SESSION['userid']) && !$_SESSION['loggedin']==true){
+					if(!isset($_SESSION['userid'])){
 	                	echo "<script> location.href='./login.php'; </script>";
 	            		exit;
 	            	}

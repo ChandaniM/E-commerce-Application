@@ -94,7 +94,7 @@
             //     $msg = 'email already exists';
             // }
             // else{
-                $SQL = "INSERT INTO Customer (Firstname,Lastname,Email,phone,address,password,category) VALUES ('". $FirstName ."','". $LastName ."','". $email ."',". $phone .",'". $Address ."','". $pas ."','". $category ."')";
+                $SQL = "INSERT INTO customer (Firstname,Lastname,Email,phone,address,password,category) VALUES ('". $FirstName ."','". $LastName ."','". $email ."',". $phone .",'". $Address ."','". $pas ."','". $category ."')";
                 $result = mysqli_query($connection,$SQL);
                 // if($result){
                 //         $newuserid=mysqli_insert_id($connection);

@@ -43,7 +43,7 @@
     				//echo $email;
     				$password = $_POST['password'];
     				
-    				$sql= "SELECT * FROM Customer WHERE Email = '$email' AND password = 
+    				$sql= "SELECT * FROM customer WHERE Email = '$email' AND password = 
     				'$password'";
     				$result = mysqli_query($connection,$sql);
     				if(isset($result)){

@@ -49,9 +49,9 @@
             <label class="form-label" for="product-categoru">Choose a product category</label>
               <select class="form-select" aria-label="Choose a product category"  name="product-category">
                 <option value="" selected disabled hidden>Select one</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option value="phone">Phone</option>
+                <option value="Camera">Camera</option>
+                <option value="shirt">Shirt</option>
               </select>
             </div>
 

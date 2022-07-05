@@ -88,33 +88,42 @@
 			$Address=$_POST["Address"];
 			$pas=$_POST["pass"];
 			$category=$_POST["option"];
-            // $query = "SELECT 1 FROM customer WHERE Email = '$email'";
-            // $selectresult = mysqli_query($connection, "SELECT 1 FROM customer WHERE Email = '$email'");
-            // if(mysqli_num_rows($selectresult)>0){
-            //     $msg = 'email already exists';
-            // }
-            // else{
+        
+                $query = "SELECT 1 FROM customer WHERE Email = '$email'";
+                $selectresult = mysqli_query($connection, "SELECT 1 FROM customer WHERE Email = '$email'");
+                if(mysqli_num_rows($selectresult)>0){
+                    $msg = 'email already exists';
+                    echo($msg);
+                }
+                else{
                 $SQL = "INSERT INTO customer (Firstname,Lastname,Email,phone,address,password,category) VALUES ('". $FirstName ."','". $LastName ."','". $email ."',". $phone .",'". $Address ."','". $pas ."','". $category ."')";
                 $result = mysqli_query($connection,$SQL);
-                // if($result){
-                //         $newuserid=mysqli_insert_id($connection);
-                //         $_SESSION['userid']=$newuserid;
-                //         //Create folder for user
-                //         $usercategory=mysqli_fetch_assoc($category);
-                //             if($usercategory['category']=="Seller"){
-                //                 mkdir('./Uploads/'.$newuserid,0777,true);
-                //             }
-                //             echo'
-                //             <script>
-                //               location.href="./index.php";
-                //             </script>';   
-                // }
-                // else{
-                    echo(mysqli_error($connection));
-                // }
-            // }
-			
-	}
+                                if($result){
+                                        $newuserid=mysqli_insert_id($connection);
+                                        $_SESSION['userid']=$newuserid;
+                                        //Create folder for user
+                                            if($category=="Seller"){
+                                                mkdir('./Uploads/'.$newuserid,0777,true);
+                                            }
+                                            echo'
+                                            <script>
+                                              location.href="./index.php?success=true";
+                                            </script>';   
+                                }
+                                else{
+                                    echo'<script>
+                                document.getElementById("alerts").innerHTML=`
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                 Error while creating account!
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            `;</script>
+                            ';
+                                }
+                            }
+                            
+                    }
+
 ?>
 <script type="text/javascript" src="./JS/loginscript.js"></script>
 </body>

@@ -79,7 +79,6 @@
  	  		 </div>
 	  	 	  ';	
 	 	  	}	
-	 	  
 	 	}
 	  ?>
 </body>
@@ -126,10 +125,10 @@ if (isset($_POST["product-submit"])) {
                     `;</script>
                     ';
                     // if($trigger=="sell"){
-		                echo '
-		                <script type="text/javascript">
-		                	location.href="./redirect.php?id='.$productId.'&trigger=uploadProductImage.php";
-		                </script>';
+											echo '
+											<script type="text/javascript">
+												location.href="./redirect.php?id='.$productId.'&trigger=uploadProductImage.php";
+											</script>';
                 	// }
                 } else {
                   echo '<script>document.getElementById("alerts").innerHTML=`
@@ -179,11 +178,11 @@ if (isset($_POST["product-submit"])) {
  ?>
 <?php
 	if($action=="delete"){
-		$deleteImage="UPDATE `product` SET `Pro_image`=NULL WHERE `Pro_id`='".$productId."'";
+		$deleteImage="UPDATE `product` SET `Pro_image`='./Assets/Images/no-image.jpg' WHERE `Pro_id`='".$productId."'";
 		if (mysqli_query($connection, $deleteImage)) {
 			//Delete the file regardless of extension
 
-			$file_pattern = "Uploads/".$_SESSION['userid']."/"."product".$productId.".*";
+			$file_pattern = "Uploads/".$_SESSION['userid']."/product".$productId.".*";
 			array_map("unlink",glob( $file_pattern));
 			echo '
 			<script type="text/javascript">

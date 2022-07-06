@@ -20,7 +20,7 @@
     <div class="row align-items-center justify-content-center" style="height:30vh">
       <a href="./add_product.php" class="btn btn-outline-primary">Add Product</a>
       <a href="./seller_products.php" class="btn btn-outline-secondary">Your Products</a>
-      <a href="" class="btn btn-outline-success">Order History</a>
+      <a href="./seller_orders.php" class="btn btn-outline-success">Order History</a>
     </div>
   </div>
   <?php

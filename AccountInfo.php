@@ -32,11 +32,10 @@
 <body>
     <!-- <header> -->
         <?php
+            $seller=false;
             include './PHP/connection.php';
             include './PHP/header.php';
             include './PHP/common_files.php';
-
-
         ?>
 
     <!-- </header> -->
@@ -46,7 +45,7 @@
             <form action="" method="post">
                 <?php
                 if(!isset($_SESSION['userid'])){
-                    header('Location:./loginform.php');
+                    header('Location:./login.php');
                 }
                     $sql = "SELECT * FROM customer WHERE userid= '".$_SESSION['userid']."'";
                             if($result = mysqli_query($connection, $sql)){
@@ -127,7 +126,11 @@
     <div class="mid">
         <div class="container-box">
             <!-- Order DB -->
-            <h2>Order Details</h2>
+            <?php
+                if(!$seller){
+                    echo'<h2>Order Details</h2>';
+                }
+            ?>
             <div class="products">
                 
                 <div class="container">            <!-- part 1 -->
@@ -136,32 +139,35 @@
                     echo "<script> location.href='./login.php'; </script>";
                     exit;
                 }
-                $sql = "SELECT * FROM `order_table` WHERE User_ID = ".$_SESSION['userid']."";
-                $result=mysqli_query($connection,$sql) or die('Invalid query:');
-                while($row = mysqli_fetch_assoc($result)){
-                    //echo $row['product_id'];
-                    $sql2="SELECT * FROM product WHERE Pro_id=".$row['Product_ID'];
-                    $result2=mysqli_query($connection,$sql2) or die('Invalid query:');
-                    // while($row2 = mysqli_fetch_assoc($result2)){
-                    $row2 = mysqli_fetch_assoc($result2);
-                        echo'
-                            <div class="row shadow my-2">
-                               <div class="col-md-2 col-4 d-flex align-items-center justify-content-end">
-                                   <img src="'.$row2["Pro_image"].'" alt="Image" style=" max-height:6.2em;">
-                               </div>
-                               <div class="col-md-8 col-6">
-                                   <div class="card border-0">
-                                     <!-- <h5 class="card-header">User Name</h5> <--></-->
-                                     <div class="card-body">
-                                       <span class="card-title">'.$row2["Pro_name"].'</span>
-                                       <p class="">x'.$row["Quantity"].'</p>
-                                       <p>&#8377;'.$row["Quantity"]*$row2["Pro_cost"].'</p>
-                                     </div>
-                                   </div>
-                               </div>
-                           </div>
-                        ';  
-                    // }
+                if(!$seller){
+                    
+                    $sql = "SELECT * FROM `order_table` WHERE User_ID = ".$_SESSION['userid']."";
+                    $result=mysqli_query($connection,$sql) or die('Invalid query:');
+                    while($row = mysqli_fetch_assoc($result)){
+                        //echo $row['product_id'];
+                        $sql2="SELECT * FROM product WHERE Pro_id=".$row['Product_ID'];
+                        $result2=mysqli_query($connection,$sql2) or die('Invalid query:');
+                        // while($row2 = mysqli_fetch_assoc($result2)){
+                        $row2 = mysqli_fetch_assoc($result2);
+                            echo'
+                                <div class="row shadow my-2">
+                                <div class="col-md-2 col-4 d-flex align-items-center justify-content-end">
+                                    <img src="'.$row2["Pro_image"].'" alt="Image" style=" max-height:6.2em;">
+                                </div>
+                                <div class="col-md-8 col-6">
+                                    <div class="card border-0">
+                                        <!-- <h5 class="card-header">User Name</h5> <--></-->
+                                        <div class="card-body">
+                                        <span class="card-title">'.$row2["Pro_name"].'</span>
+                                        <p class="">x'.$row["Quantity"].'</p>
+                                        <p>&#8377;'.$row["Quantity"]*$row2["Pro_cost"].'</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            ';  
+                        // }
+                    }
                 }
             ?>
         </div>
@@ -179,11 +185,14 @@
             $password=$_POST["password"];
             $sql="UPDATE customer SET Firstname='$FirstName',Lastname='$LastName',Email='$email',password='$password',phone='$phone',address='$Address' WHERE userid = ".$_SESSION['userid']."";
             $result = mysqli_query($connection,$sql) or die('Invalid query:'.mysqli_error($connection));
+            echo '
+            <script type="text/javascript">
+                location.href="./redirect.php?trigger=AccountInfo.php";
+            </script>';
 
         }
         if(isset($_POST['logout'])){
             unset($_SESSION['userid']);
-            // $_SESSION['loggedin']=false;
             session_destroy();
             echo "<script> location.href='./index.php'; </script>";
             exit;

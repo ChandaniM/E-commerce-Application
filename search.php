@@ -34,11 +34,11 @@
 				if(mysqli_num_rows($result)>0){		
 					while($row = mysqli_fetch_assoc($result)){		
 					echo'
-				        <div class="row py-3 border-bottom border-default">
+				        <div class="row py-2 border ">
 				            <div class="col-md-2 col-5 d-flex justify-content-end ">
 				                <img src="'.$row["Pro_image"].'" class="" alt="Image" style=" max-width:8em; ">
 				            </div>
-				            <div class="col-md-8 col-7 border border-default">
+				            <div class="col-md-8 col-7">
 				            	<div class="card border-0">
 		                  			<div class="card-body">
 						                <a href="./book_desc.php"></a>
@@ -53,7 +53,27 @@
 				                  	</div>
 				                </div>
 				            </div>
-				        </div>';
+				        </div>
+				        <hr>
+				        <div class="card mb-3 me-3" style="max-width:640px;">
+				        	<div class="row g-0">
+				        	    <div class="col-md-4">
+				        	      <img src="'.$row["Pro_image"].'" class="img-fluid rounded-start" alt="..." style=" ">
+				        	    </div>
+				        	    <div class="col-md-8 d-flex">
+				        		    <div class="card-body justify-content-between align-items-start align-self-center">
+				        		        <h5 class="card-title">'.$row["Pro_name"].'</h5>
+				        		        <h6>Sold by: '.$row["Pro_seller"].'</h6>
+				        		       	<p class="card-text">&#8377;'.$row["Pro_cost"].'</p>
+				        	        	<div class="d-flex me">
+				        	            	<a href="ProductDes.php?id='.$row["Pro_id"].'" class="btn btn-primary"><b>VIEW PRODUCT</b></a>
+				        	           	</div>
+				        		    </div>
+				        	    </div>
+				        	</div>
+				        </div>
+
+				        ';
 				   	}
 				}else{
 				 	echo "<p class='mb-5'>No Products found!</p>";

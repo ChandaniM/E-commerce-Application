@@ -9,26 +9,9 @@
          <section class="mt-3">
            <!-- Grid row-->
            <div class="row text-center d-flex justify-content-center pt-5">
-             <!-- Grid column -->
-             <div class="col-md-2">
-               <h6 class="text-uppercase font-weight-bold">
-                 <a href="./index.php" class="text-white text-decoration-none blockquote">Home</a>
-               </h6>
              </div>
-             <!-- Grid column -->
-              <!-- Grid column -->
-             <!--<div class="col-md-2">
-               <h6 class="text-uppercase font-weight-bold">
-                 <a href="#!" class="text-white">Contact</a>
-               </h6>
-              
-             <!-- Grid column 
-           </div>-->
-           <!-- Grid row-->
          </section>
          <!-- Section: Links -->
-
-         <hr class="my-4" />
 
          <!-- Section: Social -->
          <section class="text-center mb-5">

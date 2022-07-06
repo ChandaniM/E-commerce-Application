@@ -2,13 +2,13 @@
     $Account='';
     $wishList='';
     $Account1='';
-    $home='';
+    $home='<a class="nav-link" href="./index.php">Home</a>';
     // For Seller 
     $sellerPageLink='';
     if(isset($_SESSION['userid'])) {
       $wishList='<a href="./wishlist.php" class="btn btn-success me-2">WISHLIST</a>';
       $Account= '<a href="./AccountInfo.php" class="btn btn-primary">MY ACCOUNT</a>';
-      $home='<a class="nav-link" href="./index.php">Home</a>';
+      // $home='';
       $sql2="SELECT category FROM customer WHERE userid = ".$_SESSION['userid']."";
       $result = mysqli_query($connection,$sql2);
       $sellerarray=mysqli_fetch_assoc($result);

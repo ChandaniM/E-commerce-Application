@@ -39,7 +39,7 @@
 
 <body>
 <?php 
-
+  $seller=false;
   include("./PHP/header.php");
   include("./PHP/error.php");
 ?>
@@ -62,7 +62,8 @@
                 </div>
 
                 <?php 
-                    if($row['Pro_stock']>0){
+                    if($row['Pro_stock']>0 && !$seller){
+
                        echo' <a href="checkout.php?id='.$_GET["id"].'"type="button" class="btn-lg d-block btn-success my-3 w-100 text-center text-decoration-none">Buy Now</a>';
                     }
                  ?>
@@ -81,12 +82,16 @@
             <form method="post">
                 <div class="col-8">
                 <div class="input-group">
-                    <input type="number" min="1" max="3" name="quantity" class="form-control">
+
+                    
                     <?php
-                        if($row['Pro_stock']>0){
-                            echo '<button class="btn btn-primary" name="wishlist_button" type="submit">Add to wishlist</button>';
-                        }else{
-                            echo '<button class="btn btn-secondary" name="wishlist_button" type="submit" disabled>Out of stock</button>';
+                        if(!$seller){
+                            echo '<input type="number" min="1" max="3" name="quantity" class="form-control">';
+                            if($row['Pro_stock']>0){
+                                echo '<button class="btn btn-primary" name="wishlist_button" type="submit">Add to wishlist</button>';
+                            }else{
+                                echo '<button class="btn btn-secondary" name="wishlist_button" type="submit" disabled>Out of stock</button>';
+                            }
                         }
                     ?>
                     
@@ -106,8 +111,6 @@
                 echo $row['Pro_category'];
               ?></p>
               <p>Detail Description: <?php 
-                // $text=$row['book_details'];
-                // $text=preg_replace('/,/',"<br/>",$text,20);
                 echo $row['Pro_details'];
               ?>
               </p>
@@ -122,8 +125,8 @@
 
         include './PHP/footer.php';
      ?>
-    <!-- <script src="./bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script> -->
-    <!-- Cart -->
+   
+  <!-- wishlist -->
     <?php
         if(isset($_POST['wishlist_button'])){
             if(!isset($_SESSION['userid'])){

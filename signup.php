@@ -1,7 +1,8 @@
 <?php
     session_start();
     include './PHP/connection.php';
-    include './PHP/common_files.php'
+    include './PHP/common_files.php';
+    include './PHP/error.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,8 +123,14 @@
                 $query = "SELECT 1 FROM customer WHERE Email = '$email'";
                 $selectresult = mysqli_query($connection, "SELECT 1 FROM customer WHERE Email = '$email'");
                 if(mysqli_num_rows($selectresult)>0){
-                    $msg = 'email already exists';
-                    echo($msg);
+                   echo'<script>
+                       document.getElementById("alerts").innerHTML=`
+                       <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Email already exist!!
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                       </div>
+                   `;</script>
+                   ';
                 }
                 else{
                 $SQL = "INSERT INTO customer (Firstname,Lastname,Email,phone,address,password,category) VALUES ('". $FirstName ."','". $LastName ."','". $email ."',". $phone .",'". $Address ."','". $pas ."','". $category ."')";
@@ -132,13 +139,18 @@
                                         $newuserid=mysqli_insert_id($connection);
                                         $_SESSION['userid']=$newuserid;
                                         //Create folder for user
-                                            if($category=="Seller"){
+                                           if($category=="Seller"){
                                                 mkdir('./Uploads/'.$newuserid,0777,true);
-                                            }
-                                            echo'
+                                                echo'
                                             <script>
-                                              location.href="./index.php?success=true";
-                                            </script>';   
+                                              location.href="./seller.php";
+                                            </script>';
+                                            }else{
+                                                echo'
+                                            <script>
+                                              location.href="./index.php";
+                                            </script>';
+                                            }   
                                 }
                                 else{
                                     echo'<script>

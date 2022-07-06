@@ -24,7 +24,7 @@
 	require './PHP/common_files.php';
 ?>
 <div class="flex-wrapper">
-	<div class="container">		
+	<div class="container p-2">		
 		<h2>Search Results: </h2>
 	<?php
 			if(isset($_GET['value'])){
@@ -34,27 +34,7 @@
 				if(mysqli_num_rows($result)>0){		
 					while($row = mysqli_fetch_assoc($result)){		
 					echo'
-				        <div class="row py-2 border ">
-				            <div class="col-md-2 col-5 d-flex justify-content-end ">
-				                <img src="'.$row["Pro_image"].'" class="" alt="Image" style=" max-width:8em; ">
-				            </div>
-				            <div class="col-md-8 col-7">
-				            	<div class="card border-0">
-		                  			<div class="card-body">
-						                <a href="./book_desc.php"></a>
-			                    		<h5 class="card-title">'.$row["Pro_name"].'</h5>
-				                    	<div class="rating">
-				                    		'.$row["Pro_seller"].'
-			                    		</div>
-				                    	<span class="card-text d-block">&#8377;'.$row["Pro_cost"].'</span>
-				                    	<div class="d-flex py-2">
-				                        	<a href="ProductDes.php?id='.$row["Pro_id"].'" class="btn btn-primary"><b>VIEW PRODUCT</b></a>
-				                       	</div>
-				                  	</div>
-				                </div>
-				            </div>
-				        </div>
-				        <hr>
+
 				        <div class="card mb-3 me-3" style="max-width:640px;">
 				        	<div class="row g-0">
 				        	    <div class="col-md-4">

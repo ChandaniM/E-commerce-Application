@@ -32,10 +32,10 @@
                       '.$home.'
                     </li>
                   </ul>
-                  <form class="d-flex mx-4">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
+                  <div class="d-flex mx-4">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-value">
+                    <button class="btn btn-outline-success" id="search-button">Search</button>
+                  </div>
                   '.$wishList.'        
                   '.$Account.'
                           
@@ -46,3 +46,4 @@
 
         ';
 ?>
+<script src="./JS/search.js"></script>

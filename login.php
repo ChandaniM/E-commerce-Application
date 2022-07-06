@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <div class="login-form mt-4 p-4 shadow ">
-                    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" class="row g-3">
+                    <form action="" method="POST" class="row g-3" autocomplete="off">
                         <h4>Login</h4>
                         <div class="col-12">
                             <label>Email</label>
@@ -48,8 +48,9 @@
     				$result = mysqli_query($connection,$sql);
     				if(isset($result)){
                         $check = mysqli_fetch_assoc($result);
-    					$_SESSION['loggedin']=true;
+    					// $_SESSION['loggedin']=true;
     					$_SESSION['userid']=$check['userid'];
+                        // print_r ($_SESSION['userid']);
     					echo "<script> location.href='./index.php'; </script>";
     	    			exit;
     				}

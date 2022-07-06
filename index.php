@@ -12,9 +12,8 @@
 <body>
 		<header>
 		  <?php
-		    include'./PHP/header.php';
+            include'./PHP/header.php';
 		    require './PHP/common_files.php';
-		    //Connect mtlb tera connection ka fi
 		  ?>
 		</header>
 		<div class="container-fluid">
@@ -45,7 +44,6 @@
                                                 </a>    
                                              </div>
                                         </a>
-                                  <!--  <div>-->
                                     ';
                                 }
         
@@ -57,7 +55,7 @@
 		  ?>
            <?php
                 if(isset($_GET['id'])){
-                    if(!isset($_SESSION['userid']) && !$_SESSION['loggedin']==true){
+                    if(!isset($_SESSION['userid'])){
                         echo "<script> location.href='./login.php'; </script>";
                     }else{
                         $SQL = "INSERT INTO wishlist (user_id,product_id,quantity) VALUES ('". $_SESSION['userid'] ."','". $_GET['id'] ."','". 1 ."')";  

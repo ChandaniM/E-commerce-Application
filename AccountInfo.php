@@ -45,7 +45,7 @@
             <h2> Profile Details</h2>
             <form action="" method="post">
                 <?php
-                if(!isset($_SESSION['userid']) && !$_SESSION['loggedin']==true){
+                if(!isset($_SESSION['userid'])){
                     header('Location:./loginform.php');
                 }
                     $sql = "SELECT * FROM customer WHERE userid= '".$_SESSION['userid']."'";
@@ -132,7 +132,7 @@
                 
                 <div class="container">            <!-- part 1 -->
             <?php 
-                if(!isset($_SESSION['userid']) && !$_SESSION['loggedin']==true){
+                if(!isset($_SESSION['userid'])){
                     echo "<script> location.href='./login.php'; </script>";
                     exit;
                 }
@@ -183,7 +183,7 @@
         }
         if(isset($_POST['logout'])){
             unset($_SESSION['userid']);
-            $_SESSION['loggedin']=false;
+            // $_SESSION['loggedin']=false;
             session_destroy();
             echo "<script> location.href='./index.php'; </script>";
             exit;

@@ -105,7 +105,7 @@
 			        // while($row2 = mysqli_fetch_assoc($result2)){
 			        	$cost=$row['quantity']*$row2['Pro_cost'];
 			        	$date=date('Ymd');
-						$sql3='INSERT INTO `Order` (User_ID, Product_ID, Quantity, Total_Amount, Order_Date,Status) VALUES ('.$_SESSION["userid"].', '.$row["product_id"].', '.$row["quantity"].', '.$cost.', '.$date.',"In Progress")';
+						$sql3='INSERT INTO `order_table` (User_ID, Product_ID, Quantity, Total_Amount, Order_Date,Status,Seller_ID) VALUES ('.$_SESSION["userid"].', '.$row["product_id"].', '.$row["quantity"].', '.$cost.', '.$date.',"In Progress",'.$row["seller_id"].')';
 						$result3=mysqli_query($connection,$sql3) or die('Invalid query:'.mysqli_error($connection));
 						//echo "<script>location";
 

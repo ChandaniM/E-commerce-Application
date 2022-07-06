@@ -136,7 +136,7 @@
                     echo "<script> location.href='./login.php'; </script>";
                     exit;
                 }
-                $sql = "SELECT * FROM `order` WHERE User_ID = ".$_SESSION['userid']."";
+                $sql = "SELECT * FROM `order_table` WHERE User_ID = ".$_SESSION['userid']."";
                 $result=mysqli_query($connection,$sql) or die('Invalid query:');
                 while($row = mysqli_fetch_assoc($result)){
                     //echo $row['product_id'];

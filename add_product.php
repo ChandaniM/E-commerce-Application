@@ -22,6 +22,7 @@
   <div class="container p-2">
     <h3>Enter Product details</h3>
     <?php 
+    // assoc array
         $options='';
         $categoriesArray=array(
           "Beauty"=>"beauty",
@@ -29,7 +30,8 @@
           "Phone"=>"phone",
           "Women's Fashion"=>"clothingwomen",
           "Men's Fashion"=>"clothingmen",
-          "Perfume"=>"perfume"
+          "Perfume"=>"perfume",
+          "Pen"=>"pen"
         );
         $productTitleValue= '';
         $productDescriptionValue=''; 
@@ -38,6 +40,7 @@
         $productCostValue = '';
         $productQuantityValue='';
         if(isset($_GET['id'])){
+          //  to edit existing data
          $productSelect= "SELECT * from `product` WHERE `Pro_id`='".$_GET['id']."'";
          $productSelectResult=mysqli_query($connection,$productSelect) or die(mysqli_error($connection));
          $productSelectRow = mysqli_fetch_assoc($productSelectResult);
@@ -130,10 +133,6 @@
       if (mysqli_num_rows($queryResult)>0) {
         $product_data = mysqli_fetch_assoc($queryResult);
         $updateProduct='UPDATE `product` SET `Pro_name`="'.$productTitle.'",`Pro_desc`="'.$productDescription.'",`Pro_seller`="'.$sellerName.'",`Pro_cost`="'.$productCost.'",`Pro_stock`="'.$productQuantity.'",`Pro_category`="'.$productCategory.'",`Pro_details`="'.$productSpecification.'",`seller_id`="'.$_SESSION['userid'].'" WHERE `Pro_id`="'.$_GET["id"].'"';
-        // $newQuantity=(int)$product_data['Pro_stock']+(int)$productQuantity;
-        //update stock
-        // $updateStock="UPDATE `product` SET `Pro_stock`='".$newQuantity."' WHERE `Pro_name`='".$product_data['Pro_name']."' AND `seller_id`='".$_SESSION['userid']."'";
-        // print_r($product_data);
         if (mysqli_query($connection, $updateProduct)) {
           echo "<script>location.href='./seller_products.php?result=success'</script>";
         } else {

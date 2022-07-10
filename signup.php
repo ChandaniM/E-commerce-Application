@@ -44,7 +44,7 @@
                         <div class="mb-3 col-md-6">
                             <label>First Name<span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" placeholder="Enter First Name" id="firstName">
-                            <span id="firsterror" class="text-danger fw-bold"></span>
+                            <span id="firsterror" class="text-success bg- fw-bold"></span>
                         </div>
 
                         <div class="mb-3 col-md-6">
@@ -125,7 +125,7 @@
                 if(mysqli_num_rows($selectresult)>0){
                    echo'<script>
                        document.getElementById("alerts").innerHTML=`
-                       <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                       <div class="alert alert-success alert-dismissible fade show" role="alert">
                         Email already exist!!
                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                        </div>

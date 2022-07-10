@@ -67,36 +67,6 @@
                             }
                           }
                         }
-                        
-                        // $productquery = "SELECT * from `product` WHERE `seller_id`='".$_SESSION['userid']."'";
-                        // $productResult=mysqli_query($connection,$productquery) or die(mysqli_error($connection));
-                        
-                        // while($productRow = mysqli_fetch_assoc($productResult)){
-                        //         echo'
-                        //         <div class="row shadow my-2">
-                        //             <div class="col-md-2 col-4 d-flex align-items-center justify-content-end">
-                        //                 <img src="'.$productRow["Pro_image"].'" alt="Image" style=" max-height:6.2em;">
-                        //             </div>
-                        //             <div class="col-md-8 col-6">
-                        //                 <div class="card border-0">
-                        //                   <!-- <h5 class="card-header">User Name</h5> <--></-->
-                        //                   <div class="card-body">
-                        //                     <span class="card-title">'.$productRow["Pro_name"].'</span>
-                        //                     <p>x'.$productRow["Pro_stock"].'</p>
-                        //                     <p>&#8377;'.$productRow["Pro_cost"].'</p>
-                        //                     <div class="d-flex">		
-                        //                         <a href="./add_product.php?id='.$productRow["Pro_id"].'" class="me-2 col-sm-2 btn btn-success">Edit</a>
-                        //                         <a href="./seller_products.php?action=delete&id='.$productRow["Pro_id"].'" class="col-sm-2 btn btn-danger">Delete</a>  
-                        //                     </div>  
-                                          
-                        //                    </div>
-                                          
-                        //                 </div>
-                        //             </div>
-                        //         </div>
-                        //     ';
-                        //     // }
-                        // }
                     ?>
                 </div>
             </div>

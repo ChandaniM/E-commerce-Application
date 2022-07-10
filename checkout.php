@@ -9,9 +9,11 @@
 	$data=array();
 	$final_price=0;
 	if(isset($_GET['id'])){
+		// flag 1 => buy now 
 		$selectOrder="SELECT * FROM product WHERE Pro_id=".$_GET['id'];
 		$flag=1;
 	}else{
+		// flag 0 => wishlist
 		$selectOrder="SELECT * FROM wishlist WHERE user_id=".$_SESSION['userid'];
 	}
 ?>
@@ -37,14 +39,14 @@
 		 		     <?php 
 		 		     	$result = mysqli_query($connection, $selectOrder);
 		 		     	if($flag==0){
+		 		     		// wishlist
 		 	                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 		 	                	
-		 	                	// array_push($ids, $row['book_id']);
-		 	                	// $quantity+=$row["quantity"];
 		 	                	$sql2="SELECT * FROM product WHERE Pro_id=".$row['product_id']."";
 		 	                	$result2=mysqli_query($connection,$sql2) or die('Invalid query:');
 		 	                	$row2 = mysqli_fetch_assoc($result2);
-		 	                		$data += array($row['product_id'] => $row["quantity"].",".$row2["Pro_cost"]);
+		 	                	// array fill product cost
+		 	                		$data += array($row['product_id'] => $row["quantity"].",".$row2["Pro_cost"].",".$row2["seller_id"]);
 		 	                		$final_price+=$row2["Pro_cost"];
 		 	                		echo
 		 	                		'
@@ -67,6 +69,7 @@
 		 	                
 		 		     		
 		 		     	}else{
+		 		     		// buy now
 		 	                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 		 	                		$final_price=$row["Pro_cost"];
 		 	                		$date=date('dmY');
@@ -89,7 +92,8 @@
 	    					        </div>
 		 	                		';
 		 	                }
-		 	                $insertOrder='INSERT INTO order_table (User_ID, Product_ID, Quantity, Total_Amount, Order_Date,Status) VALUES ('.$_SESSION["userid"].', '.$_GET["id"].', 1, '.$final_price.', '.$date.',"In Progress")';
+
+		 	                $insertOrder='INSERT INTO order_table (User_ID, Product_ID, Quantity, Total_Amount, Order_Date,Status,Seller_ID) VALUES ('.$_SESSION["userid"].', '.$_GET["id"].', 1, '.$final_price.', '.$date.',"In Progress",'.$row2["seller_id"].')';
 										}
 		 		     	
 		 		     ?>
@@ -102,8 +106,6 @@
 	           
 	                     <h1 class="mb-0 yellow">&#8377;<?php echo $final_price; ?></h1>
 	                 </div> 
-
-	                 <!-- <div class="hightlight"> <span>100% Guaranteed support and update for the next 5 years.</span> </div> -->
 	             </div>
 	         </div>
 	     </div>
@@ -187,29 +189,10 @@
 		 	                	
 	 			foreach ($data as $key => $value) {
 	 				$a=explode(',', $value);
-	 				$insertOrder="INSERT INTO order_table(User_Id,Product_Id,Quantity,Total_Amount,Order_Date,Status)VALUES(".$_SESSION['userid'].",".$key.",".$a[0].",".$a[1].",".$date.",'In Progress')";
-	 				// $clearCart="DELETE FROM cart WHERE cust_id=".$_SESSION['userid'];                                                                                      
+	 				$insertOrder="INSERT INTO order_table(User_Id,Product_Id,Quantity,Total_Amount,Order_Date,Status,Seller_ID)VALUES(".$_SESSION['userid'].",".$key.",".$a[0].",".$a[1].",".$date.",'In Progress',".$a[2].")";                                                                                     
 					$result = mysqli_query($connection,$insertOrder);
 					if($result){
-						// // if (mysqli_query($connection, $clearCart)) {
-						//   // $walletMoney="SELECT `funds` from `customer` WHERE `userid`='".$_SESSION['userid']."'";
-						//   $walletMoneyResult = mysqli_query($connection, $walletMoney);
-						//   $walletMoneyRow = mysqli_fetch_assoc($walletMoneyResult);
-				
-						//  	if($walletMoneyRow['funds']>=$a[1]){
-						//       //new balance
-						//       $newBalance=$walletMoneyRow['funds']-$a[1];
-						//       $updateBalance="UPDATE `customer` SET `funds`=".$newBalance." WHERE `userid`='".$_SESSION['userid']."'";
-						      
-						//       if (mysqli_query($connection, $updateBalance)) {
 						  		echo "<script>location.href='./AccountInfo.php';</script>";
-						  		// }
-						 	// }else{
-						 		// echo"<script>alert('Insufficient Balance')</script>";
-					// /	 	}
-						// } else {
-						  // echo "Error deleting record: " . mysqli_error($conn);
-						// }
 					}else{
 					  	echo(mysqli_error($connection));
 					}                          

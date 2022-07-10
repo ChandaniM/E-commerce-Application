@@ -91,26 +91,6 @@
 
 		<?php
 				if(isset($_POST['order'])){
-				// //Date after 6 days
-				// $datetime = new DateTime(date('Y-m-d'));
-				// // $datetime->add(new DateInterval("P6D"));
-				// // $format=$datetime->format('Ymd');
-				// //echo(date('Y-m-d').' '.$format);
-				// $sql = "SELECT * FROM wishlist WHERE user_id = ".$_SESSION['userid']."";
-				// $result=mysqli_query($connection,$sql) or die('Invalid query:');
-				// while($row = mysqli_fetch_assoc($result)){
-				// 	$sql2="SELECT Pro_cost,seller_id FROM product WHERE Pro_id=".$row['product_id']."";
-			 //        $result2=mysqli_query($connection,$sql2) or die('Invalid query:');
-			 //        $row2 = mysqli_fetch_assoc($result2);
-			 //        // while($row2 = mysqli_fetch_assoc($result2)){
-			 //        	$cost=$row['quantity']*$row2['Pro_cost'];
-			 //        	$date=date('Ymd');
-				// 		$sql3='INSERT INTO `order_table` (User_ID, Product_ID, Quantity, Total_Amount, Order_Date,Status,Seller_ID) VALUES ('.$_SESSION["userid"].', '.$row["product_id"].', '.$row["quantity"].', '.$cost.', '.$date.',"In Progress",'.$row2["seller_id"].')';
-				// 		$result3=mysqli_query($connection,$sql3) or die('Invalid query:'.mysqli_error($connection));
-				// 		//echo "<script>location";
-
-				// 	// }
-				// }
 				echo "<script> location.href='./checkout.php'; </script>";
 			}
 			if(isset($_GET['id'])){

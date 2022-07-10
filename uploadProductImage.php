@@ -41,11 +41,6 @@
 	 	    	  <label for="formFile" class="form-label">Choose Image</label>
 	 	    	  <input class="form-control" type="file" name="file" id="formFile">
 	 	    	</div>
-	 	        <!-- <div class="custom-file"> -->
-<!-- 	 	            <input type="file" name="file" class="custom-file-input" id="productInput" onchange="displayImage()">
-	 	            <label class="custom-file-label" for="productInput">Choose Image</label> -->
-	 	        <!-- </div> -->
-<!-- 	 	        <div class="input-group"> -->
 	 	            <button type="submit" class="btn btn-dark input-group-text" name="product-submit" id="product-submit">Upload Image</button>
 	 	        <!-- </div> -->
 	 	    <!-- </div> -->
@@ -111,9 +106,7 @@ if (isset($_POST["product-submit"])) {
                 $fileNameNew = 'product'.$productId.'.'.$fileActualExt;
                 $target_dir = "Uploads/".$_SESSION['userid']."/".$fileNameNew;
                 $insertDocument='';
-                // if($trigger=="sell"){
                 $insertDocument="UPDATE `product` SET `Pro_image`='./".$target_dir."' WHERE `Pro_id`='".$productId."'";	
-                // $del='';
                 if (mysqli_query($connection, $insertDocument)) {
                     move_uploaded_file($fileTemp, $target_dir);
                     echo 
@@ -124,12 +117,12 @@ if (isset($_POST["product-submit"])) {
                         </div>
                     `;</script>
                     ';
-                    // if($trigger=="sell"){
-											echo '
-											<script type="text/javascript">
-												location.href="./redirect.php?id='.$productId.'&trigger=uploadProductImage.php";
-											</script>';
-                	// }
+                    
+					echo '
+					<script type="text/javascript">
+						location.href="./redirect.php?id='.$productId.'&trigger=uploadProductImage.php";
+					</script>';
+                	
                 } else {
                   echo '<script>document.getElementById("alerts").innerHTML=`
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
